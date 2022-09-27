@@ -1,4 +1,12 @@
 import React, { useEffect, useState } from "react";
+import styled from "styled-components";
+
+const Button = styled.button`
+  border: none;
+  background-color: transparent;
+  position: relative;
+  right: 1.5em;
+`;
 
 interface SearchProps {
   onChange: (input: string) => void;
@@ -12,11 +20,21 @@ const Search = (props: SearchProps) => {
   }, [value]);
 
   return (
-    <input
-      type="text"
-      placeholder={props.placeHolder}
-      onChange={(event) => setValue(event.target.value)}
-    ></input>
+    <div>
+      <input
+        type="text"
+        placeholder={props.placeHolder}
+        onChange={(event) => setValue(event.target.value)}
+        value={value}
+      ></input>
+      <Button
+        onClick={() => {
+          setValue("");
+        }}
+      >
+        X
+      </Button>
+    </div>
   );
 };
 
