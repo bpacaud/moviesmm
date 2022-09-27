@@ -1,14 +1,23 @@
 import React, { useEffect, useState } from "react";
 import "./App.css";
 import Header from "./Header";
-import MovieMiniature from "./MovieMiniature";
-import Search from "./Search";
+import MovieMiniature, {
+  MovieMiniatureType,
+} from "./Containers/MovieMiniature";
+import Search from "./Components/Search";
+import DetailedView from "./Containers/DetailedView";
 
 function App() {
   // internal states
   const [movies, setMovies] = useState([]);
   const [hasFetchedOnStart, setHasFetched] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
+  const [isDetailedView, setIsDetailedView] = useState(false);
+  const [movieToDetail, setMovieToDetail] = useState({
+    original_title: "",
+    poster_path: "",
+    id: 0,
+  });
 
   // utils
   const fetchMoviesAndStore = async (searchTerm: string) => {
@@ -23,6 +32,11 @@ function App() {
   // business function
   const handleSearchChange = (searchInput: string) => {
     setSearchTerm(searchInput);
+  };
+  const handleClickBack = () => setIsDetailedView(false);
+  const handleClickMiniature = (movie: MovieMiniatureType) => {
+    setIsDetailedView(true);
+    setMovieToDetail(movie);
   };
 
   // effect on change searchTerm : search movies in DB after user stops typing.
@@ -47,20 +61,31 @@ function App() {
 
   return (
     <div className="App">
-      <Header onToggle={() => ({})} theme="light" />
-      <Search
-        onChange={handleSearchChange}
-        placeHolder="Rechercher un film..."
+      <Header
+        onToggle={() => ({})}
+        theme="light"
+        isBack={isDetailedView}
+        onClickBack={handleClickBack}
       />
-      <div>
-        {movies.map((movie) => (
-          <MovieMiniature
-            onClick={() => ({})}
-            movie={movie}
-            key={movie["id"]}
+      {isDetailedView ? (
+        <DetailedView movie={movieToDetail} />
+      ) : (
+        <div>
+          <Search
+            onChange={handleSearchChange}
+            placeHolder="Rechercher un film..."
           />
-        ))}
-      </div>
+          <div>
+            {movies.map((movie) => (
+              <MovieMiniature
+                onClick={handleClickMiniature}
+                movie={movie}
+                key={movie["id"]}
+              />
+            ))}
+          </div>
+        </div>
+      )}
     </div>
   );
 }
