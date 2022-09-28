@@ -2,8 +2,9 @@ import React, { ReactNode } from "react";
 import styled from "styled-components";
 
 const Div = styled("div")<{ isLightTheme: boolean }>`
+  padding-left: 15px;
+  padding-right: 15px;
   width: 100%;
-  height: 100vh;
   display: flex;
   justify-content: center;
   background-color: ${(p) => (p.isLightTheme ? "#FFFFFF" : "#4B5563")};

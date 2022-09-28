@@ -4,11 +4,18 @@ import MovieImg from "../Components/MovieImg";
 import { MovieMiniatureType } from "./MovieMiniature";
 
 const Left = styled.div``;
-const Right = styled.div``;
+const Right = styled.div`
+  @media (max-width: 467px) {
+    display: flex;
+    justify-content: center;
+  }
+`;
 const Width = styled.div`
-  display: flex;
   text-align: left;
   padding: 15px;
+  @media (min-width: 468px) {
+    display: flex;
+  }
 `;
 const Title = styled.div`
   padding-bottom: 10px;
@@ -17,7 +24,9 @@ const Summary = styled.div`
   padding-bottom: 10px;
   padding-right: 20px;
 `;
-const Average = styled.div``;
+const Average = styled.div`
+  padding-bottom: 10px;
+`;
 
 interface DetailedViewProps {
   movie: MovieMiniatureType;
