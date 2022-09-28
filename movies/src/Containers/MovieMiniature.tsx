@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import MovieImg from "../Components/MovieImg";
 
@@ -20,7 +20,10 @@ interface MovieMiniatureProps {
 const MovieMiniature = (props: MovieMiniatureProps) => {
   return (
     <Frame onClick={(event) => props.onClick(props.movie)}>
-      <MovieImg path={props.movie["poster_path"]} />
+      <MovieImg
+        path={props.movie["poster_path"]}
+        title={props.movie["original_title"]}
+      />
     </Frame>
   );
 };

@@ -50,7 +50,7 @@ const DetailedView = (props: DetailedViewProps) => {
         <Average>{details.vote_average}/10</Average>
       </Left>
       <Right>
-        <MovieImg path={props.movie["poster_path"]} />
+        <MovieImg path={props.movie["poster_path"]} title="" />
       </Right>
     </Width>
   );
