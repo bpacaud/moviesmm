@@ -5,6 +5,7 @@ const Width = styled("div")<{ isThemeLight: boolean }>`
   color: white;
   background-color: ${(p) => (p.isThemeLight ? "#60a5fa" : "#1F2937")};
   display: flex;
+  text-align: center;
 `;
 const Side = styled.div`
   width: 2em;
