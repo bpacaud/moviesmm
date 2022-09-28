@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from "react";
 import "./App.css";
 import Header from "./Header";
-import MovieMiniature, {
-  MovieMiniatureType,
-} from "./Containers/MovieMiniature";
-import Search from "./Components/Search";
+import { MovieMiniatureType } from "./Containers/MovieMiniature";
 import DetailedView from "./Containers/DetailedView";
 import Mosaic from "./Containers/Mosaic";
+import Main from "./Components/Main";
 
 function App() {
   // internal states
@@ -68,15 +66,17 @@ function App() {
         isBack={isDetailedView}
         onClickBack={handleClickBack}
       />
-      {isDetailedView ? (
-        <DetailedView movie={movieToDetail} />
-      ) : (
-        <Mosaic
-          handleClickMiniature={handleClickMiniature}
-          handleSearchChange={handleSearchChange}
-          movies={movies}
-        />
-      )}
+      <Main>
+        {isDetailedView ? (
+          <DetailedView movie={movieToDetail} />
+        ) : (
+          <Mosaic
+            handleClickMiniature={handleClickMiniature}
+            handleSearchChange={handleSearchChange}
+            movies={movies}
+          />
+        )}
+      </Main>
     </div>
   );
 }

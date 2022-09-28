@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import Main from "../Components/Main";
 import Search from "../Components/Search";
 import MovieMiniature, { MovieMiniatureType } from "./MovieMiniature";
 
@@ -9,14 +10,12 @@ interface MosaicProps {
   handleClickMiniature: (movie: MovieMiniatureType) => void;
 }
 
-const Main = styled.div`
+/* const Main = styled.div`
   width: 100%;
   display: flex;
   justify-content: center;
-`;
-const Width = styled.div`
-  width: 45em;
-`;
+`; */
+
 const Container = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fill, 100px);
@@ -25,23 +24,21 @@ const Container = styled.div`
 `;
 
 const Mosaic = (props: MosaicProps) => (
-  <Main>
-    <Width>
-      <Search
-        onChange={props.handleSearchChange}
-        placeHolder="Rechercher un film..."
-      />
-      <Container>
-        {props.movies.map((movie) => (
-          <MovieMiniature
-            onClick={props.handleClickMiniature}
-            movie={movie}
-            key={movie["id"]}
-          />
-        ))}
-      </Container>
-    </Width>
-  </Main>
+  <div>
+    <Search
+      onChange={props.handleSearchChange}
+      placeHolder="Rechercher un film..."
+    />
+    <Container>
+      {props.movies.map((movie) => (
+        <MovieMiniature
+          onClick={props.handleClickMiniature}
+          movie={movie}
+          key={movie["id"]}
+        />
+      ))}
+    </Container>
+  </div>
 );
 
 export default Mosaic;
