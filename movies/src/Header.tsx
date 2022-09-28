@@ -1,9 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 
-const Width = styled.div`
+const Width = styled("div")<{ isThemeLight: boolean }>`
   color: white;
-  background-color: #60a5fa;
+  background-color: ${(p) => (p.isThemeLight ? "#60a5fa" : "#1F2937")};
   display: flex;
 `;
 const Side = styled.div`
@@ -12,27 +12,29 @@ const Side = styled.div`
 const Center = styled.div`
   flex: 1;
 `;
-const Back = styled.div`
+const Button = styled.div`
   width: 2em;
   cursor: pointer;
 `;
 
 interface HeaderProps {
-  theme: string;
-  onToggle: (toggled: boolean) => void;
+  isThemeLight: boolean;
+  onToggle: () => void;
   isBack: boolean;
   onClickBack: () => void;
 }
 
 const Header = (props: HeaderProps) => (
-  <Width>
+  <Width isThemeLight={props.isThemeLight}>
     {props.isBack ? (
-      <Back onClick={props.onClickBack}>&lt;</Back>
+      <Button onClick={props.onClickBack}>&lt;</Button>
     ) : (
       <Side></Side>
     )}
     <Center>Movies</Center>
-    <Side></Side>
+    <Side>
+      <Button onClick={props.onToggle}>&lt;&gt;</Button>
+    </Side>
   </Width>
 );
 

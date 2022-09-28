@@ -9,6 +9,7 @@ import Main from "./Components/Main";
 function App() {
   // internal states
   const [movies, setMovies] = useState([]);
+  const [isThemeLight, setIsThemeLight] = useState(true);
   const [hasFetchedOnStart, setHasFetched] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const [isDetailedView, setIsDetailedView] = useState(false);
@@ -37,6 +38,9 @@ function App() {
     setIsDetailedView(true);
     setMovieToDetail(movie);
   };
+  const handleToggle = () => {
+    setIsThemeLight(!isThemeLight);
+  };
 
   // effect on change searchTerm : search movies in DB after user stops typing.
   // Without delay the server respond too much requests from the page.
@@ -61,12 +65,12 @@ function App() {
   return (
     <div className="App">
       <Header
-        onToggle={() => ({})}
-        theme="light"
+        onToggle={handleToggle}
+        isThemeLight={isThemeLight}
         isBack={isDetailedView}
         onClickBack={handleClickBack}
       />
-      <Main>
+      <Main isThemeLight={isThemeLight}>
         {isDetailedView ? (
           <DetailedView movie={movieToDetail} />
         ) : (
