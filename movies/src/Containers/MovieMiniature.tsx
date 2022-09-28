@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
+import MovieImg from "../Components/MovieImg";
 
 const Frame = styled.div`
   cursor: pointer;
@@ -18,11 +19,8 @@ interface MovieMiniatureProps {
 
 const MovieMiniature = (props: MovieMiniatureProps) => {
   return (
-    <Frame>
-      <img
-        onClick={(event) => props.onClick(props.movie)}
-        src={`https://image.tmdb.org/t/p/w500/${props.movie["poster_path"]}`}
-      />
+    <Frame onClick={(event) => props.onClick(props.movie)}>
+      <MovieImg path={props.movie["poster_path"]} />
     </Frame>
   );
 };

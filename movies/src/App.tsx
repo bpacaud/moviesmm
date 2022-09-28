@@ -6,6 +6,7 @@ import MovieMiniature, {
 } from "./Containers/MovieMiniature";
 import Search from "./Components/Search";
 import DetailedView from "./Containers/DetailedView";
+import Mosaic from "./Containers/Mosaic";
 
 function App() {
   // internal states
@@ -70,21 +71,11 @@ function App() {
       {isDetailedView ? (
         <DetailedView movie={movieToDetail} />
       ) : (
-        <div>
-          <Search
-            onChange={handleSearchChange}
-            placeHolder="Rechercher un film..."
-          />
-          <div>
-            {movies.map((movie) => (
-              <MovieMiniature
-                onClick={handleClickMiniature}
-                movie={movie}
-                key={movie["id"]}
-              />
-            ))}
-          </div>
-        </div>
+        <Mosaic
+          handleClickMiniature={handleClickMiniature}
+          handleSearchChange={handleSearchChange}
+          movies={movies}
+        />
       )}
     </div>
   );

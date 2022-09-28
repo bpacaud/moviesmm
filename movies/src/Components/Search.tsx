@@ -4,8 +4,19 @@ import styled from "styled-components";
 const Button = styled.button`
   border: none;
   background-color: transparent;
+  position: absolute;
+  right: -5px;
+  top: 0.34em;
+  cursor: pointer;
+`;
+const Width = styled.div`
+  width: 100%;
   position: relative;
-  right: 1.5em;
+  margin-bottom: 15px;
+  margin-top: 15px;
+`;
+const Input = styled.input`
+  width: 100%;
 `;
 
 interface SearchProps {
@@ -20,13 +31,13 @@ const Search = (props: SearchProps) => {
   }, [value]);
 
   return (
-    <div>
-      <input
+    <Width>
+      <Input
         type="text"
         placeholder={props.placeHolder}
         onChange={(event) => setValue(event.target.value)}
         value={value}
-      ></input>
+      ></Input>
       <Button
         onClick={() => {
           setValue("");
@@ -34,7 +45,7 @@ const Search = (props: SearchProps) => {
       >
         X
       </Button>
-    </div>
+    </Width>
   );
 };
 
